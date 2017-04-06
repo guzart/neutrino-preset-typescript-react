@@ -1,0 +1,46 @@
+{
+  "name": "neutrino-preset-typescript-react",
+  "version": "0.1.0",
+  "description": "Neutrino preset that supports building React applications in TypeScript.",
+  "main": "index.js",
+  "scripts": {
+    "release": "standard-version -a -r",
+    "test": "ava test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guzart/neutrino-preset-typescript-react.git"
+  },
+  "keywords": [
+    "neutrino",
+    "neutrino-preset",
+    "typescript",
+    "react"
+  ],
+  "author": "Arturo Guzman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guzart/neutrino-preset-typescript-react/issues"
+  },
+  "homepage": "https://github.com/guzart/neutrino-preset-typescript-react#readme",
+  "dependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "lodash": "^4.17.4",
+    "neutrino-preset-web": "^5.3.0",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.2.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
+    "neutrino": "^5.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "neutrino": "^5.0.0",
+    "standard-version": "^4.0.0",
+    "webpack": "^2.3.2"
+  }
+}
