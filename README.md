@@ -80,8 +80,8 @@ Now edit your project's package.json to add commands for starting and building t
 ```json
 {
   "scripts": {
-    "start": "neutrino start --presets neutrino-preset-typescript-react",
-    "build": "neutrino build --presets neutrino-preset-typescript-react"
+    "start": "neutrino start --use neutrino-preset-typescript-react",
+    "build": "neutrino build --use neutrino-preset-typescript-react"
   }
 }
 ```
