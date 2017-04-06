@@ -1,5 +1,4 @@
-const awesomeTypescriptLoader = require('awesome-typescript-loader');
-const { get, merge } = require('lodash');
+const { merge } = require('lodash');
 const neutrinoWeb = require('neutrino-preset-web');
 const { join } = require('path');
 
@@ -12,7 +11,7 @@ module.exports = (neutrino, options) => {
   neutrino.use(neutrinoWeb);
   neutrino.config.module.rules.delete('compile');
 
-  const opts = merge({
+  const compileOptions = merge({
     sourceMap: true,
     noImplicitAny: true,
     module: 'commonjs',
@@ -57,6 +56,7 @@ module.exports = (neutrino, options) => {
         .when(options.exclude, rule => rule.exclude.merge(options.exclude))
         .use('typescript')
           .loader(require.resolve('awesome-typescript-loader'))
+          .options(compileOptions)
           .end()
         .end()
       .end()
@@ -70,7 +70,7 @@ module.exports = (neutrino, options) => {
       const protocol = ds.get('https') ? 'https' : 'http';
       config
         .entry('index')
-          .prepend('react-hot-loader/patch')
+          .prepend(require.resolve('react-hot-loader/patch'))
           .add(`webpack-dev-server/client?${protocol}://${ds.get('host')}:${ds.get('port')}/`)
           .add('webpack/hot/dev-server');
     });
