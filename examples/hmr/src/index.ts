@@ -2,20 +2,27 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import { Hello } from './Hello';
+import * as Hello from './Hello'; // imports the component types
 
-
-const load = () => ReactDOM.render(
+const load = (Root: any) => ReactDOM.render(
+  // Render the Component we pass in
   React.createElement(
     AppContainer,
     null,
-    React.createElement(Hello, { compiler: 'TypeScript', framework: 'React' })
+    React.createElement(Root, { compiler: 'TypeScript', framework: 'React' })
   ),
   document.getElementById('root'),
 );
 
 if (module.hot) {
-  module.hot.accept('./Hello', load);
+  // Wait for changes in './Hello'
+  module.hot.accept('./Hello', () => {
+    // Get new version
+    const NextHello = require('./Hello') as typeof Hello;
+    // Render again
+    load(NextHello.Hello);
+  });
 }
 
-load();
+// Initial render, include the component
+load(Hello.Hello);

@@ -16,7 +16,8 @@ module.exports = (neutrino, options) => {
     noImplicitAny: true,
     module: 'commonjs',
     target: 'es5',
-    jsx: 'react'
+    jsx: 'react',
+    types: ['webpack-env']
   }, options.compile);
 
   neutrino.config
