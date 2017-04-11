@@ -1,0 +1,26 @@
+{
+  "name": "neutrino-preset-typescript-react-example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "neutrino start",
+    "build": "neutrino build"
+  },
+  "neutrino": {
+    "use": [
+      "../../index.js"
+    ]
+  },
+  "dependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
+    "@types/react-hot-loader": "^3.0.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-hot-loader": "next"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.13.0",
+    "neutrino": "^5.4.0"
+  }
+}

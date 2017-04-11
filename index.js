@@ -9,7 +9,7 @@ module.exports = (neutrino, options) => {
   neutrino.options.copy = merge({ patterns: ['*.ts*'] }, neutrino.options.copy);
 
   neutrino.use(neutrinoWeb);
-  neutrino.config.module.rules.delete('compile');
+  neutrino.config.module.rules.delete('compile'); // remove babel compile
 
   const compileOptions = merge({
     sourceMap: true,
