@@ -1,4 +1,4 @@
-const { merge } = require('lodash');
+const merge = require('deepmerge');
 const neutrinoWeb = require('neutrino-preset-web');
 const { join } = require('path');
 
@@ -6,11 +6,11 @@ const MODULES = join(__dirname, 'node_modules');
 
 module.exports = (neutrino, options) => {
   neutrino.options.entry = './src/index.ts';
-  neutrino.options.copy = merge({ patterns: ['*.ts*'] }, neutrino.options.copy);
 
   neutrino.use(neutrinoWeb);
   neutrino.config.module.rules.delete('compile'); // remove babel compile
 
+  // typescript compiler options
   const compileOptions = merge({
     sourceMap: true,
     noImplicitAny: true,
@@ -18,23 +18,16 @@ module.exports = (neutrino, options) => {
     target: 'es5',
     jsx: 'react',
     types: ['webpack-env']
-  }, options.compile);
+  }, options.compile || {});
 
   neutrino.config
-    .entry('index')
-      .clear()
-      .add(neutrino.options.entry)
-      .end()
     .resolve
       .modules
         .add(MODULES)
         .end()
       .extensions
-        .clear()
-        .add('.ts')
-        .add('.tsx')
-        .add('.js')
-        .add('.json')
+        .prepend('.ts')
+        .prepend('.tsx')
         .end()
       .end()
     .resolveLoader
@@ -75,4 +68,6 @@ module.exports = (neutrino, options) => {
           .add(`webpack-dev-server/client?${protocol}://${ds.get('host')}:${ds.get('port')}/`)
           .add('webpack/hot/dev-server');
     });
+
+  console.log(JSON.stringify(neutrino.config.toConfig(), null, 2));
 };
