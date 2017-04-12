@@ -59,7 +59,10 @@ module.exports = (neutrino, options) => {
       'react/lib/ExecutionEnvironment': true,
       'react/lib/ReactContext': 'window'
     })
-    .when(process.env.NODE_ENV === 'development', (config) => {
+    .when(
+      process.env.NODE_ENV === 'development',
+      // development
+      (config) => {
       const ds = config.devServer;
       const protocol = ds.get('https') ? 'https' : 'http';
       config
@@ -67,7 +70,17 @@ module.exports = (neutrino, options) => {
           .prepend(require.resolve('react-hot-loader/patch'))
           .add(`webpack-dev-server/client?${protocol}://${ds.get('host')}:${ds.get('port')}/`)
           .add('webpack/hot/dev-server');
-    });
-
-  console.log(JSON.stringify(neutrino.config.toConfig(), null, 2));
+      },
+      // production
+      (config) => {
+        config.plugin('copy')
+          .tap((args) => {
+            const patt = args[0];
+            const opts = args[1];
+            if (!opts.ignore) { opts.ignore = []; }
+            opts.ignore = opts.ignore.concat(['*.ts', '*.tsx']);
+            return [patt, opts];
+          });
+      }
+    );
 };
