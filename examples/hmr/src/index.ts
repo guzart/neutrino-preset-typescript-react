@@ -4,15 +4,11 @@ import { AppContainer } from 'react-hot-loader';
 
 import * as Hello from './Hello'; // imports the component types
 
-const load = (Root: any) => ReactDOM.render(
+const load = (Root: any) => {
+  const app = React.createElement(Root, { compiler: 'TypeScript', framework: 'React' });
   // Render the Component we pass in
-  React.createElement(
-    AppContainer,
-    null,
-    React.createElement(Root, { compiler: 'TypeScript', framework: 'React' })
-  ),
-  document.getElementById('root'),
-);
+  ReactDOM.render(React.createElement(AppContainer, null, app), document.getElementById('root'));
+};
 
 if (module.hot) {
   // Wait for changes in './Hello'

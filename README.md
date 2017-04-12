@@ -94,6 +94,9 @@ Start the app, then open a browser to the address in the console:
 ❯ yarn start
 ✔ Development server running on: http://localhost:5000
 [at-loader] Using typescript from typescript and "tsconfig.json" from tsconfig.json.
+⠇ Waiting for initial build to finish
+[at-loader] Checking started in a separate process...
+[at-loader] Ok, 0.128 sec.
 ✔ Build completed
 ```
 
@@ -103,5 +106,46 @@ Start the app, then open a browser to the address in the console:
 ❯ npm start
 ✔ Development server running on: http://localhost:5000
 [at-loader] Using typescript from typescript and "tsconfig.json" from tsconfig.json.
+⠇ Waiting for initial build to finish
+[at-loader] Checking started in a separate process...
+[at-loader] Ok, 0.128 sec.
 ✔ Build completed
 ```
+
+## Hot Module Reloading
+
+Add `react-hot-loader@next` as a dependency, and its typing `@types/react-hot-loader`
+
+```bash
+❯ yarn add react-hot-loader@next @types/react-hot-loader
+```
+
+Wrap your application with `react-hot-loader` `AppContainer` component, preferrably you should do this at
+the root of your project. You will have to listen for changes and re-render the new component in the DOM,
+like so:
+
+```js
+// src/index.ts
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+
+import * as Hello from './Hello';
+
+const load = (Root: any) => {
+  const app = React.createElement(Root, { compiler: 'TypeScript', framework: 'React' });
+  ReactDOM.render(React.createElement(AppContainer, null, app), document.getElementById('root'));
+};
+
+if (module.hot) {
+  module.hot.accept('./Hello', () => {
+    const NextHello = require('./Hello') as typeof Hello;
+    load(NextHello.Hello);
+  });
+}
+
+load(Hello.Hello);
+```
+
+Take a look at [examples/hmr/](https://github.com/guzart/neutrino-preset-typescript-react/tree/master/examples/hmr)
+for an example on HMR.

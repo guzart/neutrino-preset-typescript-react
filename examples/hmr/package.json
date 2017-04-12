@@ -20,7 +20,6 @@
     "react-hot-loader": "next"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.0",
     "neutrino": "^5.4.0"
   }
 }
