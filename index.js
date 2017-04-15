@@ -5,7 +5,7 @@ const { join } = require('path');
 const MODULES = join(__dirname, 'node_modules');
 
 module.exports = (neutrino, options) => {
-  neutrino.options.entry = './src/index.ts';
+  neutrino.options.entry = 'index.ts';
 
   neutrino.use(neutrinoWeb);
   neutrino.config.module.rules.delete('compile'); // remove babel compile
