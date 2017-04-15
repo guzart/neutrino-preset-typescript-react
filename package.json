@@ -1,6 +1,6 @@
 {
   "name": "neutrino-preset-typescript-react",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Neutrino preset that supports building React applications in TypeScript.",
   "main": "index.js",
   "scripts": {
