@@ -17,7 +17,12 @@ module.exports = (neutrino, options) => {
     module: 'commonjs',
     target: 'es5',
     jsx: 'react',
-    types: ['webpack-env']
+    configFileContent: {
+      include: [
+        join(MODULES, '@types'),
+        join(neutrino.options.node_modules, '@types')
+      ]
+    }
   }, options.compile || {});
 
   neutrino.config
