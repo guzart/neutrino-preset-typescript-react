@@ -58,7 +58,9 @@ ReactDOM.render(
   React.createElement(Hello, { compiler: 'TypeScript', framework: 'React' }),
   document.getElementById('root')
 );
+```
 
+```javascript
 // src/Hello.tsx
 import * as React from "react";
 
