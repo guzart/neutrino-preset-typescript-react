@@ -33,11 +33,11 @@
     "typescript": "^2.2.2"
   },
   "peerDependencies": {
-    "@types/react": "^15.0.21",
-    "@types/react-dom": "^0.14.23",
-    "neutrino": "^5.0.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "@types/react": "^15",
+    "@types/react-dom": "^15",
+    "neutrino": "^5.0",
+    "react": "^15",
+    "react-dom": "^15"
   },
   "devDependencies": {
     "ava": "^0.18.2",
